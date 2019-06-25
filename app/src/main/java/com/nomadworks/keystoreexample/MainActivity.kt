@@ -54,6 +54,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun readEncryptedContent(alias: String): String? {
         try {
+            secure.generateSecretKey(alias)
             val file = File(filesDir, alias)
             if (file.exists()) {
                 val secure = CipherSecurity()
