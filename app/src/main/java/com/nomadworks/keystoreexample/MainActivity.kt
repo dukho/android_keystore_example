@@ -1,8 +1,8 @@
 package com.nomadworks.keystoreexample
 
 import android.content.Context
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import com.nomadworks.keystoreexample.cipher.CipherSecurity
 import kotlinx.android.synthetic.main.activity_main.*
 import java.io.*
@@ -12,7 +12,7 @@ class MainActivity : AppCompatActivity() {
     companion object {
         const val ALIAS = "my_secret"   // alias for keystore & file name to save things
     }
-    val secure = CipherSecurity()
+    private val secure = CipherSecurity()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,6 +33,11 @@ class MainActivity : AppCompatActivity() {
             } else {
                 textRestored.text = content
             }
+        }
+
+        btnGetAliases.setOnClickListener {
+            val aliases = secure.getAvailableAliases()
+            txtAliases.text = aliases.toString()
         }
     }
 

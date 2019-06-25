@@ -104,4 +104,11 @@ class CipherSecurity {
         return String(cipher.doFinal(encryptedData), Charsets.UTF_8)
     }
 
+    fun getAvailableAliases(): List<String> {
+        return try {
+            keyStore.aliases().toList()
+        } catch (t: Throwable) {
+            listOf("")
+        }
+    }
 }
